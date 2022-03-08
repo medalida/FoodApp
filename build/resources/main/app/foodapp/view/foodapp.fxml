@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="MainScene" maxHeight="Infinity" maxWidth="Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #ccf; -fx-max-width: 1000;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.foodapp.controller.FoodAppController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER_RIGHT" maxWidth="44.0" minWidth="40.0" prefHeight="524.0" prefWidth="44.0" style="-fx-background-color: #92278F;">
+               <children>
+                  <Button fx:id="threeBar" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="30.0" maxWidth="34.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" onMouseClicked="#menuOnOff" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: #92278F;" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../data/images/menu.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="40.0" top="25.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="Home" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="4.0" layoutY="35.0" maxHeight="30.0" maxWidth="34.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" onMouseClicked="#goHome" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: #92278F;" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView accessibleRole="BUTTON" fitHeight="25.0" fitWidth="44.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../data/images/home.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="18.0" top="8.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="SearchByIngredients" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="4.0" layoutY="65.0" maxHeight="30.0" maxWidth="34.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" onMouseClicked="#goSearchByIngredients" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: #92278F;" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="54.0" onMouseClicked="#goSearchByIngredients" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../data/images/search.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="18.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="Favorite" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="4.0" layoutY="96.0" maxHeight="30.0" maxWidth="34.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" onMouseClicked="#favourite" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: #92278F;" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fx:id="favoriteIcon" fitHeight="25.0" fitWidth="45.0" onMouseClicked="#favourite" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../data/images/like.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="18.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Region maxWidth="1.7976931348623157E308" prefHeight="218.0" prefWidth="52.0" VBox.vgrow="ALWAYS" />
+                  <Button fx:id="Back" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="4.0" layoutY="126.0" maxHeight="30.0" maxWidth="34.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: #92278F;" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="50.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../data/images/back.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="22.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </VBox>
+            <VBox id="menuRight" fx:id="menuRight" prefWidth="221.0" style="-fx-background-color: #92278F;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../data/images/foodapp.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets bottom="40.0" left="10.0" right="10.0" top="20.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Button fx:id="Home" mnemonicParsing="false" onMouseClicked="#goHome" style="-fx-background-color: #92278F;" text="Home" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="11.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="SearchByIngredients" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#goSearchByIngredients" style="-fx-background-color: #92278F;" text="Search by ingredients" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="11.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button id="Favorite" layoutX="10.0" layoutY="497.0" mnemonicParsing="false" onMouseClicked="#favourite" style="-fx-background-color: #92278F;" text="Favorite" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="11.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Region maxWidth="1.7976931348623157E308" prefWidth="30.0" VBox.vgrow="ALWAYS" />
+                  <Button fx:id="Back" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#goBack" style="-fx-background-color: #92278F;" text="Back" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="18.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <AnchorPane id="Scene" fx:id="Scene" prefHeight="1169.0" prefWidth="734.0" style="-fx-background-color: #E8CDE7FF;" HBox.hgrow="ALWAYS">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+               </children></AnchorPane>
+         </children>
+      </HBox>
+   </children>
+   <stylesheets>
+      <URL value="@stylesheet.css" />
+   </stylesheets>
+</AnchorPane>

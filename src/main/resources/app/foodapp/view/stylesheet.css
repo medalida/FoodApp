@@ -1,0 +1,8 @@
+.HomePane{
+-fx-background-color: linear-gradient(to top right, #ff7f50, #6a5acd);
+}
+
+.Welcome{
+-fx-font-family: 'Crimson Pro';
+}
+

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="HomePane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.foodapp.controller.HomeController">
+   <children>
+      <VBox alignment="CENTER" maxWidth="50.0" styleClass="HomePane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label styleClass="Welcome" text="Welcome to FoodApp" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="48.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="50.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" VBox.vgrow="NEVER">
+               <children>
+                  <TextField prefHeight="50.0" prefWidth="400.0" promptText="find your receipts" style="-fx-background-color: #FFFFFF77;">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </TextField>
+                  <Button mnemonicParsing="false" style="-fx-background-color: #AAAAAA66;">
+                     <graphic>
+                        <ImageView fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../data/images/search.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <Label text="Find your favorite receipes between over then 5 000 receipes" textFill="#fff300">
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Italic" size="24.0" />
+               </font>
+            </Label>
+         </children></VBox>
+   </children>
+   <stylesheets>
+      <URL value="@stylesheet.css" />
+   </stylesheets>
+</AnchorPane>
