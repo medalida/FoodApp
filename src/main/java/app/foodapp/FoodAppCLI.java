@@ -94,7 +94,7 @@ public class FoodAppCLI {
                             Scanner receiptId = new Scanner(System.in);
                             System.out.println("enter the receipt id: ");
                             Receipt receipt = new Receipt(Integer.parseInt(receiptId.next()));
-                            JSONObject myReceipt1 = (JSONObject) receipt.getSummary();
+                            JSONObject myReceipt1 = (JSONObject) receipt.getInformation();
                             System.out.println(myReceipt1.get("title"));
                             System.out.println();
                             System.out.println("Do you want to add to favorites? (y/n): ");
@@ -119,7 +119,7 @@ public class FoodAppCLI {
                             assert receipts != null;
                             JSONObject myReceipt2;
                             for (Receipt value : receipts) {
-                                myReceipt2 = (JSONObject) value.getSummary();
+                                myReceipt2 = (JSONObject) value.getInformation();
                                 System.out.println(myReceipt2.get("id") + " - " + myReceipt2.get("title"));
                             }
                             System.out.println();
