@@ -2,33 +2,72 @@ package app.foodapp;
 
 import app.foodapp.model.Favourites;
 import app.foodapp.model.Receipt;
+import org.json.simple.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class FoodAppCLI {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         System.out.println("\t\t\t\t\t\t\t\t\tWelcome to the food app\n");
 
-        Scanner scanner = new Scanner(System.in);
+        int userInput;
 
         documentation();
 
+
+
+
         loop: while(true){
-            switch (Integer.parseInt(scanner.next())) {
+            while (true) {
+                Scanner scanner = new Scanner(System.in);
+                try {
+                    userInput = (scanner.nextInt());
+                    break;
+                } catch (Exception e) {
+                    System.out.println("please enter a valid number:");
+                }
+            }
+            switch (userInput) {
                 case 1:
-                    Favourites favorites = new Favourites();
                     favoritesDocumentation();
-                    Scanner favoritesScanner = new Scanner(System.in);
-                    switch (Integer.parseInt(favoritesScanner.next())) {
+                    int userInput1;
+                    while (true) {
+                        Scanner favoritesScanner = new Scanner(System.in);
+                        try {
+                            userInput1 = (favoritesScanner.nextInt());
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("please enter a valid number:");
+                        }
+                    }
+                    switch (userInput1) {
                         case 1:
-                            //TODO
+                            ArrayList<Object> listOfFavorites = Favourites.getFavourites();
+                            for (Object listOfFavorite : listOfFavorites) {
+                                JSONObject favorite = (JSONObject) listOfFavorite;
+                                System.out.println(favorite.get("id") + " - " + favorite.get("title"));
+
+                            }
+                            System.out.println();
                             break;
                         case 2:
-                            //TODO
+                            System.out.println("enter the IDs of receipts you want to delete separated with spaces");
+                            Scanner input = new Scanner(System.in);
+                            String numbers = input.nextLine();
+
+                            String[] t = numbers.split(" ");
+                            List<Integer> listOfNumbers = new ArrayList<>();
+                            for (String listOfNumber : t) {
+                                listOfNumbers.add(Integer.parseInt(listOfNumber));
+                            }
+
+                            for (int number : listOfNumbers) {
+                                Favourites.removeFromFavourites(new Receipt(number));
+                            }
+
                             break;
                         default:
                             System.out.println("please enter a valid number\n");
@@ -39,18 +78,34 @@ public class FoodAppCLI {
                     break;
 
                 case 2:
-                    Scanner requestScanner = new Scanner(System.in);
                     receiptsDocumentation();
-                    switch (Integer.parseInt(requestScanner.next())) {
+                    int userInput2;
+                    while (true) {
+                        Scanner requestScanner = new Scanner(System.in);
+                        try {
+                            userInput2 = (requestScanner.nextInt());
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("please enter a valid number:");
+                        }
+                    }
+                    switch (userInput2) {
                         case 1:
                             Scanner receiptId = new Scanner(System.in);
-                            System.out.println("please enter the receipt id: ");
+                            System.out.println("enter the receipt id: ");
                             Receipt receipt = new Receipt(Integer.parseInt(receiptId.next()));
-                            addToFavorites(receipt);
+                            JSONObject myReceipt1 = (JSONObject) receipt.getSummary();
+                            System.out.println(myReceipt1.get("title"));
+                            System.out.println();
+                            System.out.println("Do you want to add to favorites? (y/n): ");
+                            Scanner yOrN = new Scanner(System.in);
+                            if ("y".equals(yOrN.nextLine())) {
+                                Favourites.addToFavourites(receipt);
+                            }
                             break;
 
                         case 2:
-                            System.out.println("please enter the ingredients separated with spaces:");
+                            System.out.println("enter the ingredients separated with spaces:");
                             Scanner input = new Scanner(System.in);
                             String ingredientsString = input.nextLine();
 
@@ -58,15 +113,29 @@ public class FoodAppCLI {
                             List<String> ingredients = Arrays.asList(t);
 
 
-                            System.out.println("please enter the number of receipts you want to generate:");
+                            System.out.println("enter the number of receipts you want to generate:");
                             Scanner numberOfReceipts = new Scanner(System.in);
                             ArrayList<Receipt> receipts = Receipt.searchByIngredients(ingredients, Integer.parseInt(numberOfReceipts.next()),0);
-
-                            System.out.println(receipts);
-
                             assert receipts != null;
+                            JSONObject myReceipt2;
                             for (Receipt value : receipts) {
-                                addToFavorites(value);
+                                myReceipt2 = (JSONObject) value.getSummary();
+                                System.out.println(myReceipt2.get("id") + " - " + myReceipt2.get("title"));
+                            }
+                            System.out.println();
+
+                            System.out.println("enter the IDs of receipts you want to add to favourites separated with spaces");
+                            Scanner input666 = new Scanner(System.in);
+                            String Snumbers = input666.nextLine();
+
+                            String[] tt = Snumbers.split(" ");
+                            List<Integer> listOfNumberss = new ArrayList<>();
+                            for (String listOfNumber : tt) {
+                                listOfNumberss.add(Integer.parseInt(listOfNumber));
+                            }
+
+                            for (int number : listOfNumberss) {
+                                Favourites.addToFavourites(new Receipt(number));
                             }
                             break;
 
@@ -88,7 +157,6 @@ public class FoodAppCLI {
                     break;
             }
         }
-        scanner.close();
     }
 
     public static void documentation() {
@@ -99,8 +167,8 @@ public class FoodAppCLI {
     }
 
     public static void favoritesDocumentation() {
-        System.out.println("1-show favorites");
-        System.out.println("2-delete receipt from favorites\n");
+        System.out.println("1-display favorites");
+        System.out.println("2-delete receipts from favorites\n");
         System.out.println("Chose a number:\n");
     }
 
@@ -109,13 +177,5 @@ public class FoodAppCLI {
         System.out.println("1-send request using ID");
         System.out.println("2-search for receipts using ingredients\n");
         System.out.println("Chose a number:\n");
-    }
-
-    public static void addToFavorites(Receipt receipt){
-        System.out.println("Do you want to add to favorites? (y/n): ");
-        Scanner yOrN = new Scanner(System.in);
-        if ("y".equals(yOrN.nextLine())) {
-            Favourites.addToFavourites(receipt);
-        }
     }
 }
