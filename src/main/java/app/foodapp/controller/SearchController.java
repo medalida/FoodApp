@@ -29,11 +29,12 @@ public class SearchController  implements Initializable {
     @FXML private TextField SearchField;
     @FXML private Button More;
     @FXML private VBox MessageBox;
+    @FXML private TextField NumberField;
     private HashMap<String, Button> Ingredients = new HashMap<>();
     private FoodAppController ParentController;
     private int offset = 0;
     private ArrayList<String> IngredientsArray = null;
-    private int numberOfReceipt = 1;
+    private int numberOfReceipt = 5;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -79,6 +80,24 @@ public class SearchController  implements Initializable {
         this.More.setVisible(true);
         this.CartesPane.getChildren().clear();
         this.IngredientsArray = new ArrayList<>(this.Ingredients.keySet());
+        String text = this.NumberField.getText();
+        if(text.matches("[0-9]*")){
+            if(!text.equals("")){
+                int number = Integer.parseInt(text);
+                if(number > 10){
+                    this.numberOfReceipt = 10;
+                    this.NumberField.setText("10");
+                }else{
+                    this.numberOfReceipt = number;
+                }
+            }else{
+                this.numberOfReceipt = 5;
+            }
+
+        }else{
+            this.numberOfReceipt = 5;
+            this.NumberField.setText("5");
+        }
         ArrayList<Receipt> receipts= Receipt.searchByIngredients(this.IngredientsArray, this.numberOfReceipt,0);
 
         if(receipts == null){
@@ -89,12 +108,14 @@ public class SearchController  implements Initializable {
             showNoReceiptFound();
         }
         this.offset = receipts.size();
+
         load(receipts);
 
     }
     private void load(ArrayList<Receipt> receipts){
         for(Receipt receipt : receipts){
             try{
+                this.MessageBox.getChildren().clear();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/foodapp/view/carte.fxml"));
                 AnchorPane pane = loader.load();
                 CarteController controller = loader.getController();
@@ -110,6 +131,7 @@ public class SearchController  implements Initializable {
 
     private void showNoReceiptFound() {
         this.More.setVisible(false);
+        this.MessageBox.getChildren().clear();
         Label label = new Label("No receipt found");
         label.setFont(Font.font(32));
         label.setTextFill(Color.valueOf("#92278F"));
@@ -118,6 +140,7 @@ public class SearchController  implements Initializable {
 
     private void showNoInternet() {
         this.More.setVisible(false);
+        this.MessageBox.getChildren().clear();
         Label label = new Label("No internet :(");
         label.setFont(Font.font(32));
         label.setTextFill(Color.valueOf("#92278F"));
@@ -126,6 +149,7 @@ public class SearchController  implements Initializable {
 
     @FXML
     private void loadMore(){
+        this.MessageBox.getChildren().clear();
         ArrayList<Receipt> receipts= Receipt.searchByIngredients(this.IngredientsArray, this.numberOfReceipt,this.offset);
         if(receipts == null){
             showNoInternet();

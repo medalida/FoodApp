@@ -33,9 +33,9 @@ public class Favourites {
             JSONArray ingredients = (JSONArray) receipt.getIngredients();
             JSONArray instructions = (JSONArray) receipt.getInstructions();
             JSONArray equipments = (JSONArray) receipt.getEquipments();
-            JSONObject summary = (JSONObject) receipt.getSummary();
+
             String summary = receipt.getSummary();
-            object.put("title", summary.get("title"));
+            object.put("title", informations.get("title"));
             object.put("id", receipt.getId());
             object.put("information", informations);
             object.put("ingredients", ingredients);

@@ -40,7 +40,7 @@
                   </Button>
                </children>
             </HBox>
-            <Label text="Find your favorite receipes between over then 5 000 receipes" textFill="#fff300">
+            <Label text="Find your favorite receipes between over then 5 000 of them" textFill="#fff300">
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin>

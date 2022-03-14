@@ -27,6 +27,11 @@
                               <Font name="System Bold" size="14.0" />
                            </font></Button>
                         <Region HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="NumberField" alignment="CENTER" layoutX="134.0" layoutY="30.0" minHeight="40.0" minWidth="60.0" prefWidth="40.0" promptText="Number" style="-fx-background-color: #F3E5F2;">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </TextField>
                         <Button fx:id="SearchButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#search" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #92278F;" text="Search" textFill="WHITE">
                            <HBox.margin>
                               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
